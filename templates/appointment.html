@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Agendar Cita{% endblock %}
+{% block content %}
+<h2>Agendar Cita</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.date.label }} {{ form.date() }}</p>
+    <p>{{ form.time.label }} {{ form.time() }}</p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
