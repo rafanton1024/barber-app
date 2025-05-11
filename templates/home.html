@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+  <h1>Bienvenido a la App de Citas con Barberos</h1>
+  <p><a href="{{ url_for('auth.login') }}">Iniciar sesión</a> o <a href="{{ url_for('auth.register') }}">Registrarse</a></p>
+{% endblock %}

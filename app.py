@@ -15,6 +15,10 @@ from routes import auth, appointments, payments
 app.register_blueprint(auth.bp)
 app.register_blueprint(appointments.bp)
 app.register_blueprint(payments.bp)
-
+from routes import auth, appointments, payments, main
+app.register_blueprint(main.bp)
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
