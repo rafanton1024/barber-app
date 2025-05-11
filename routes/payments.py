@@ -7,7 +7,7 @@ from flask import Blueprint, request, redirect, url_for, current_app
 bp = Blueprint('payments', __name__, url_prefix='/payment')
 
 # Usar configuración directamente desde el entorno de Flask
-@bp.before_app_first_request
+@bp.before_app_request
 def setup_stripe():
     stripe.api_key = current_app.config['STRIPE_SECRET_KEY']
 
