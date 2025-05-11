@@ -1,9 +1,15 @@
 import os
 
 class Config:
-    SECRET_KEY = 'your_secret_key'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///barber.db'
+    # Clave secreta para formularios y sesiones
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'clave_por_defecto_segura')
+
+    # URI de la base de datos SQLite
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'sqlite:///barber.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    STRIPE_SECRET_KEY = 'your_stripe_secret_key'
-    PAYPAL_CLIENT_ID = 'your_paypal_client_id'
-    PAYPAL_CLIENT_SECRET = 'your_paypal_client_secret'
+
+    # Stripe y PayPal: claves extraídas desde variables de entorno (más seguras)
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+    PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID', '')
+    PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET', '')
+

@@ -1,7 +1,8 @@
 services:
-  - type: web
-    name: barber-app
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
-    autoDeploy: true
+  - type: web                   # Es un servicio web
+    name: barber-app            # Nombre de tu servicio en Render
+    env: python                 # Entorno de ejecución: Python
+    buildCommand: "pip install -r requirements.txt"   # Comando para instalar dependencias
+    startCommand: "gunicorn app:app"                  # Comando para iniciar tu aplicación
+    autoDeploy: true           # Habilita despliegue automático al hacer push a GitHub
+

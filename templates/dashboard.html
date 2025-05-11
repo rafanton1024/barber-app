@@ -1,30 +1,43 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
+
 {% block content %}
 <h2>Mis Citas</h2>
+
+{% if appointments %}
 <table>
-    <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Barbero/Cliente</th>
-        <th>Estado</th>
-    </tr>
-    {% for appt in appointments %}
-    <tr>
-        <td>{{ appt.date }}</td>
-        <td>{{ appt.time }}</td>
-        <td>
-            {% if current_user.is_barber %}
-                Cliente: {{ appt.user_id }}
-            {% else %}
-                Barbero: {{ appt.barber_id }}
-            {% endif %}
-        </td>
-        <td>{{ appt.status }}</td>
-    </tr>
-    {% endfor %}
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>{{ 'Cliente' if current_user.is_barber else 'Barbero' }}</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appt in appointments %}
+        <tr>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+            <td>
+                {% if current_user.is_barber %}
+                    {{ appt.user_id }}
+                {% else %}
+                    {{ appt.barber_id }}
+                {% endif %}
+            </td>
+            <td>{{ appt.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
-<form action="{{ url_for('payments.checkout') }}" method="POST">
+
+<form action="{{ url_for('payments.checkout') }}" method="POST" style="margin-top: 20px;">
     <button type="submit">Pagar Cita</button>
 </form>
+
+{% else %}
+<p>No tienes citas programadas.</p>
+{% endif %}
+
 {% endblock %}
