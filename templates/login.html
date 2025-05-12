@@ -4,7 +4,8 @@
 {% block content %}
 <h2>Iniciar Sesión</h2>
 
-<form method="POST" novalidate>
+<form method="POST" action="{{ url_for('auth.login') }}">
+
     {{ form.hidden_tag() }}
 
     <div class="form-group">
