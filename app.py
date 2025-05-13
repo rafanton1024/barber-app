@@ -1,5 +1,4 @@
 # 🔑 Paso 1: Configuración inicial
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -9,7 +8,7 @@ app.config.from_object('config.Config')
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'  # ✅ corrección aquí
 
 # Importar y registrar todos los blueprints
 from routes import auth, appointments, payments, main

@@ -10,6 +10,7 @@ bp = Blueprint('appointments', __name__, url_prefix='/appointments')
 # Vista del panel de citas del usuario o barbero
 @bp.route('/dashboard')
 @login_required
+
 def dashboard():
     if current_user.is_barber:
         appointments = Appointment.query.filter_by(barber_id=current_user.id).all()
